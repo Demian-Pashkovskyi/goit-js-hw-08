@@ -3,21 +3,28 @@ import { galleryItems } from './gallery-items';
 // Change code below this line
 
 console.log(galleryItems);
-//_________________________________________________________________
-// cle
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
+console.log(galleryItems);
 
-// const onOpenModal = img => {
-// 	modalImage = onCreateModal(img);
-// 	modalImage.show();
-// 	console.log("Open modal");
-// 	document.addEventListener("keydown", onKeyPress);
-// };
+const galleryEl = document.querySelector('.gallery');
 
-// const onKeyPress = event => {
-// 	if (event.code !== "Escape") {
-// 		return;
-// 	}
-// 	console.log("Close modal with escape");
-// 	modalImage.close()
-// };
+const galleryMarkup = galleryItems.map(
+({ preview, original, description }) => 
+	`<a class="gallery__link" href="${original}">
+		<img class="gallery__image" src="${preview}" alt="${description}" />
+ </a>`,)
+.join('');
+
+galleryEl.insertAdjacentHTML('beforeend', galleryMarkup);
+
+const lightShotGallery = new SimpleLightbox('.gallery a', { 
+	caption: true,
+	nav: true,
+	captionsData: 'alt',
+	captionPosition: 'bottom',
+	captionDelay: 250,
+});
