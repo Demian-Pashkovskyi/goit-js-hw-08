@@ -11,6 +11,7 @@ if (savedInfo !== null) {
 	emailInputEl.value = savedInfo.email;
 	messageInputEl.value = savedInfo.message;
 }
+
 const feedbackForm = {
 	email: 'email',
 	message: 'message',
