@@ -11,13 +11,9 @@ if (savedInfo !== null) {
 	emailInputEl.value = savedInfo.email;
 	messageInputEl.value = savedInfo.message;
 }
-
 const feedbackForm = {
 	email: 'email',
 	message: 'message',
-	getFeedbackForm() {
-   console.log(`Email: ${this.email} \nMessage: ${this.message}`);
-	},
 };
 
 formEl.addEventListener('input',throttle(() => {
@@ -26,14 +22,14 @@ formEl.addEventListener('input',throttle(() => {
 );
 
 function onTextAreaInput() {
-  feedbackForm.email = emailInputEl.value;
-  feedbackForm.message = messageInputEl.value;
-  localStorage.setItem(KEY, JSON.stringify(feedbackForm));
+	feedbackForm.email = emailInputEl.value;
+	feedbackForm.message = messageInputEl.value;
+	localStorage.setItem(KEY, JSON.stringify(feedbackForm));
 }
 
 formEl.addEventListener('submit', event => {
-  event.preventDefault();
-  feedbackForm.getFeedbackForm();
-  formEl.reset();
-  localStorage.clear();
+	console.log(savedInfo);
+	event.preventDefault();
+	event.currentTarget.reset();
+	localStorage.removeItem(KEY);
 });
