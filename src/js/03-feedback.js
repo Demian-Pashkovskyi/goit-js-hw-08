@@ -11,10 +11,13 @@ if (savedInfo !== null) {
 	emailInputEl.value = savedInfo.email;
 	messageInputEl.value = savedInfo.message;
 }
-
-const feedbackForm = {
-	email: 'email',
-	message: 'message',
+feedbackForm = {
+	email: '',
+	message: '',
+	
+	getFeedbackForm() {
+		console.log(`Email: ${this.email} Message: ${this.message}`);
+},
 };
 
 formEl.addEventListener('input',throttle(() => {
@@ -29,8 +32,8 @@ function onTextAreaInput() {
 }
 
 formEl.addEventListener('submit', event => {
-	console.log(savedInfo);
 	event.preventDefault();
-	event.currentTarget.reset();
+	feedbackForm.getFeedbackForm();
+	formEl.reset();
 	localStorage.removeItem(KEY);
 });
